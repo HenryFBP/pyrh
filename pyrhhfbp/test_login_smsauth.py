@@ -1,7 +1,7 @@
 import json
 import os
 from typing import Dict
-from pyrh import Robinhood
+from pyrhhfbp import Robinhood
 
 
 def get_robinhood_login_json(path='~/.robinhood/login.json') -> Dict:

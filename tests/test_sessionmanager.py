@@ -14,7 +14,7 @@ MOCK_URL = "mock://test.com"
 
 @pytest.fixture
 def sm():
-    from pyrh.models import SessionManager
+    from pyrhhfbp.models import SessionManager
 
     sample_user = {
         "username": "user@example.com",
@@ -26,7 +26,7 @@ def sm():
 
 @pytest.fixture
 def sm_adap(monkeypatch):
-    from pyrh.models import SessionManager
+    from pyrhhfbp.models import SessionManager
 
     sample_user = {
         "username": "user@example.com",
@@ -49,7 +49,7 @@ def test_repr(sm):
 
 
 def test_bad_challenge_type(sm):
-    from pyrh.models import SessionManager
+    from pyrhhfbp.models import SessionManager
 
     sample_user = {
         "username": "user@example.com",
@@ -63,7 +63,7 @@ def test_bad_challenge_type(sm):
 
 
 def test_login_oauth2_errors(monkeypatch, sm_adap):
-    from pyrh.exceptions import AuthenticationError
+    from pyrhhfbp.exceptions import AuthenticationError
 
     sm, adapter = sm_adap
 
@@ -85,7 +85,7 @@ def test_login_oauth2_challenge_valid(monkeypatch, sm_adap):
     import uuid
     from datetime import datetime
     import pytz
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.models.oauth import OAuthSchema
 
     monkeypatch.setattr("builtins.input", lambda: "123456")
     expiry = datetime.strptime("2010", "%Y").replace(tzinfo=pytz.UTC)
@@ -137,9 +137,9 @@ def test_login_oauth2_challenge_valid(monkeypatch, sm_adap):
 
 @freeze_time("2005-01-01")
 def test_login_oauth2_challenge_invalid(monkeypatch, sm_adap):
-    from pyrh.exceptions import AuthenticationError
+    from pyrhhfbp.exceptions import AuthenticationError
     from datetime import datetime
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.models.oauth import OAuthSchema
     import pytz
     import uuid
 
@@ -214,7 +214,7 @@ def test_login_oauth2_challenge_invalid(monkeypatch, sm_adap):
 
 
 def test_login_oauth2_mfa_valid(monkeypatch, sm_adap):
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.models.oauth import OAuthSchema
 
     mfa_code = "123456"
     monkeypatch.setattr("builtins.input", lambda: mfa_code)
@@ -242,8 +242,8 @@ def test_login_oauth2_mfa_valid(monkeypatch, sm_adap):
 
 
 def test_login_oauth2_mfa_invalid(monkeypatch, sm_adap):
-    from pyrh.exceptions import AuthenticationError
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.exceptions import AuthenticationError
+    from pyrhhfbp.models.oauth import OAuthSchema
 
     monkeypatch.setattr("builtins.input", lambda: "123456")
     responses = [
@@ -267,7 +267,7 @@ def test_login_oauth2_mfa_invalid(monkeypatch, sm_adap):
 
 
 def test_refresh_oauth2_success(sm_adap):
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.models.oauth import OAuthSchema
 
     response = {
         "access_token": "some_token",
@@ -293,8 +293,8 @@ def test_refresh_oauth2_success(sm_adap):
 
 
 def test_refresh_oauth2_failure(sm_adap):
-    from pyrh.exceptions import AuthenticationError
-    from pyrh.models.oauth import OAuthSchema
+    from pyrhhfbp.exceptions import AuthenticationError
+    from pyrhhfbp.models.oauth import OAuthSchema
 
     response = {"error": "some_error"}
     sm, adapter = sm_adap
@@ -351,7 +351,7 @@ def test_logout_success(post_mock, sm):
 
 @mock.patch("pyrh.models.SessionManager.post")
 def test_logout_failure(post_mock, sm):
-    from pyrh.exceptions import AuthenticationError
+    from pyrhhfbp.exceptions import AuthenticationError
     from requests.exceptions import HTTPError
 
     def raise_error(*args, **kwargs):
@@ -370,8 +370,8 @@ def test_logout_failure(post_mock, sm):
 
 
 def test_jsonify(tmpdir, sm):
-    from pyrh import dump_session, load_session
-    from pyrh.exceptions import InvalidCacheFile
+    from pyrhhfbp import dump_session, load_session
+    from pyrhhfbp.exceptions import InvalidCacheFile
 
     sm.oauth.access_token = "some_token"
     sm.oauth.refresh_token = "some_refresh_token"
@@ -395,7 +395,7 @@ def test_authenticated(sm, monkeypatch):
     import pytz
     from datetime import datetime as dt, timedelta
 
-    from pyrh.models.sessionmanager import EXPIRATION_TIME
+    from pyrhhfbp.models.sessionmanager import EXPIRATION_TIME
 
     assert not sm.authenticated
 

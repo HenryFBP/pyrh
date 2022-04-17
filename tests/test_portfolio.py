@@ -6,12 +6,12 @@
 # import six
 # from flaky import flaky
 #
-# import pyrh.exceptions as RH_exception
-# from pyrh import Robinhood
+# import pyrhhfbp.exceptions as RH_exception
+# from pyrhhfbp import Robinhood
 #
 #
 # if six.PY2:
-#     from pyrh import RH_exception
+#     from pyrhhfbp import RH_exception
 #
 #
 # HERE = path.abspath(path.dirname(__file__))

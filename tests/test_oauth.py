@@ -7,7 +7,7 @@ from freezegun import freeze_time
 def test_challenge_can_retry():
     from copy import copy
 
-    from pyrh.models.oauth import Challenge
+    from pyrhhfbp.models.oauth import Challenge
     from datetime import datetime, timedelta
     import pytz
 
@@ -28,8 +28,8 @@ def test_challenge_can_retry():
 
 
 def test_oauth_test_attrs():
-    from pyrh.models.oauth import OAuth
-    from pyrh.models.base import UnknownModel
+    from pyrhhfbp.models.oauth import OAuth
+    from pyrhhfbp.models.base import UnknownModel
 
     oa = OAuth()
     oa.challenge = UnknownModel(a="test")

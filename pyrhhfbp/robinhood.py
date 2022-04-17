@@ -7,9 +7,9 @@ import dateutil
 import requests
 from yarl import URL
 
-from pyrh import urls
-from pyrh.exceptions import InvalidTickerSymbol
-from pyrh.models import (
+from pyrhhfbp import urls
+from pyrhhfbp.exceptions import InvalidTickerSymbol
+from pyrhhfbp.models import (
     InstrumentManager,
     PortfolioSchema,
     SessionManager,

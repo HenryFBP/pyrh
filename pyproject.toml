@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "pyrh"
-version = "2.0"
-description = "Unofficial Robinhood Python API"
+name = "pyrhhfbp"
+version = "2.0.2rc"
+description = "Unofficial Robinhood Python API...forked by HenryFBP to update an outdated PyPI package"
 authors = [
     "Unofficial Robinhood Python API Developers"
 ]
 license = "MIT"
-readme = "README.rst"
+readme = "README.md"
 homepage = "https://github.com/georgianpartners/foreshadow"
 repository = "https://github.com/georgianpartners/foreshadow"
 keywords = [

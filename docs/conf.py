@@ -7,7 +7,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "pyrh"
+project = "pyrhhfbp"
 copyright = "2020, Unofficial Robinhood Python API"
 author = "Unofficial Robinhood Python API"
 master_doc = "index"
@@ -51,7 +51,7 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 
 # source_suffix = '.rst'
-source_suffix = [".rst"]
+source_suffix = [".md"]
 
 # intersphinx
 intersphinx_mapping = {

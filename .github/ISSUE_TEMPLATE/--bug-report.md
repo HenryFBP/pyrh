@@ -45,7 +45,7 @@ Please run the following snippet in your environment and paste the results here.
 ```python
 import platform; print(platform.platform())
 import sys; print("Python", sys.version)
-import pyrh; print("pyrh", pyrh.__version__)
+import pyrhhfbp; print("pyrh", pyrh.__version__)
 ```
 -->
 

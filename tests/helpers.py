@@ -3,7 +3,7 @@
 #
 # import requests
 #
-# from pyrh import Robinhood
+# from pyrhhfbp import Robinhood
 #
 #
 # def get_config(config_filename):

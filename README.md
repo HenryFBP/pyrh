@@ -53,7 +53,7 @@ Quick start
 
 .. code-block:: python
 
-   from pyrh import Robinhood
+   from pyrhhfbp import Robinhood
 
    rh = Robinhood()
    rh.login(username="YOUR_EMAIL", password="YOUR_PASSWORD")
@@ -64,7 +64,15 @@ How To Install:
 
 .. code-block::
 
-   pip install pyrh
+   pip install pyrhhfbp
+
+How To Release to PyPI:
+***************
+
+.. code-block::
+
+    poetry publish --build
+
 
 Running example.ipynb_
 **********************

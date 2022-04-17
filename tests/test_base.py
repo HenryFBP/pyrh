@@ -2,7 +2,7 @@
 
 
 def test_base_model_simplenamespace_simple():
-    from pyrh.models.base import BaseModel, UnknownModel
+    from pyrhhfbp.models.base import BaseModel, UnknownModel
 
     payload1 = {"a": 10, "b": 15, "c": 20}
     payload2 = {"nested": {"b": 15, "c": 20}}
@@ -20,7 +20,7 @@ def test_base_model_simplenamespace_simple():
 
 
 def test_base_model_repr():
-    from pyrh.models.base import BaseModel
+    from pyrhhfbp.models.base import BaseModel
 
     bm = BaseModel(a=10)
 
@@ -28,7 +28,7 @@ def test_base_model_repr():
 
 
 def test_base_schema():
-    from pyrh.models.base import UnknownModel, BaseSchema
+    from pyrhhfbp.models.base import UnknownModel, BaseSchema
 
     bm = UnknownModel(a=10)
     load_bm = BaseSchema().load({"a": 10})
