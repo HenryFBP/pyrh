@@ -33,9 +33,9 @@ def sm_adap(monkeypatch):
         "password": "some password",
     }
 
-    monkeypatch.setattr("pyrh.urls.OAUTH", MOCK_URL)
-    monkeypatch.setattr("pyrh.urls.OAUTH_REVOKE", MOCK_URL)
-    monkeypatch.setattr("pyrh.urls.build_challenge", lambda x: MOCK_URL)
+    monkeypatch.setattr("pyrhhfbp.urls.OAUTH", MOCK_URL)
+    monkeypatch.setattr("pyrhhfbp.urls.OAUTH_REVOKE", MOCK_URL)
+    monkeypatch.setattr("pyrhhfbp.urls.build_challenge", lambda x: MOCK_URL)
 
     session_manager = SessionManager(**sample_user)
     adapter = requests_mock.Adapter()
@@ -312,14 +312,14 @@ def test_refresh_oauth2_failure(sm_adap):
     assert "Failed to refresh" in str(e.value)
 
 
-@mock.patch("pyrh.models.SessionManager._login_oauth2")
+@mock.patch("pyrhhfbp.models.SessionManager._login_oauth2")
 def test_login_init(login_mock, sm):
     sm.login()
 
     assert login_mock.call_count == 1
 
 
-@mock.patch("pyrh.models.SessionManager._refresh_oauth2")
+@mock.patch("pyrhhfbp.models.SessionManager._refresh_oauth2")
 def test_login_refresh_default(refresh_mock, sm):
     # default expires_at is 1970
     sm.oauth.access_token = "some_token"
@@ -330,7 +330,7 @@ def test_login_refresh_default(refresh_mock, sm):
     assert refresh_mock.call_count == 1
 
 
-@mock.patch("pyrh.models.SessionManager._refresh_oauth2")
+@mock.patch("pyrhhfbp.models.SessionManager._refresh_oauth2")
 def test_login_refresh_force(refresh_mock, sm):
     sm.oauth.access_token = "some_token"
     sm.oauth.refresh_token = "some_refresh_token"
@@ -340,7 +340,7 @@ def test_login_refresh_force(refresh_mock, sm):
     assert refresh_mock.call_count == 1
 
 
-@mock.patch("pyrh.models.SessionManager.post")
+@mock.patch("pyrhhfbp.models.SessionManager.post")
 def test_logout_success(post_mock, sm):
     post_mock.return_value = {}
     sm.oauth.access_token = "some_token"
@@ -349,7 +349,7 @@ def test_logout_success(post_mock, sm):
     assert post_mock.call_count == 1
 
 
-@mock.patch("pyrh.models.SessionManager.post")
+@mock.patch("pyrhhfbp.models.SessionManager.post")
 def test_logout_failure(post_mock, sm):
     from pyrhhfbp.exceptions import AuthenticationError
     from requests.exceptions import HTTPError
@@ -409,7 +409,7 @@ def test_authenticated(sm, monkeypatch):
     assert sm.authenticated
 
 
-@mock.patch("pyrh.models.SessionManager.login")
+@mock.patch("pyrhhfbp.models.SessionManager.login")
 def test_get(mock_login, sm):
     import json
 
@@ -438,7 +438,7 @@ def test_get(mock_login, sm):
     assert "404 Client Error" in str(e.value)
 
 
-@mock.patch("pyrh.models.SessionManager.login")
+@mock.patch("pyrhhfbp.models.SessionManager.login")
 def test_post(mock_login, sm):
     import json
 

@@ -39,11 +39,15 @@ rh.login(username="YOUR_EMAIL", password="YOUR_PASSWORD")
 rh.print_quote("AAPL")
 ```
 
-## How To Install:
+## Installing
 
     pip install pyrhhfbp
 
-##  How To Release to PyPI: 
+## Running unit tests
+
+    poetry run pytest --cov-report=xml
+
+##  Release to PyPI 
 
     poetry publish --build
 
