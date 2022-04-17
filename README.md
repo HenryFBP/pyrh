@@ -1,103 +1,74 @@
-.. image:: https://i.imgur.com/74CYw5g.png
-   :target: https://github.com/robinhood-unofficial/pyrh
-   :alt: robinhood-logo
+[![robinhood-logo](https://i.imgur.com/74CYw5g.png)](https://github.com/robinhood-unofficial/pyrh)
 
--------------------------------------------------------------
+------------------------------------------------------------------------
 
-pyrh - Unofficial Robinhood API
-###############################
+# pyrh - Unofficial Robinhood API
 
-.. image:: https://github.com/robinhood-unofficial/pyrh/workflows/build/badge.svg?branch=master&event=push
-   :target: https://github.com/robinhood-unofficial/pyrh/actions?query=workflow%3Abuild+branch%3Amaster
-   :alt: Build Status
+[![Build Status](https://github.com/robinhood-unofficial/pyrh/workflows/build/badge.svg?branch=master&event=push)](https://github.com/robinhood-unofficial/pyrh/actions?query=workflow%3Abuild+branch%3Amaster)
 
-.. image:: https://codecov.io/gh/robinhood-unofficial/pyrh/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/robinhood-unofficial/pyrh
-   :alt: Coverage
+[![Coverage](https://codecov.io/gh/robinhood-unofficial/pyrh/branch/master/graph/badge.svg)](https://codecov.io/gh/robinhood-unofficial/pyrh)
 
-.. image:: https://readthedocs.org/projects/pyrh/badge/?version=latest
-   :target: https://pyrh.readthedocs.io/en/latest/?badge=latest
-   :alt: Documentation Status
+[![Documentation Status](https://readthedocs.org/projects/pyrh/badge/?version=latest)](https://pyrh.readthedocs.io/en/latest/?badge=latest)
 
-.. image:: https://img.shields.io/pypi/v/pyrh?style=plastic
-   :target: https://pypi.org/project/pyrh/
-   :alt: PyPI Version
+[![PyPI Version](https://img.shields.io/pypi/v/pyrh?style=plastic)](https://pypi.org/project/pyrh/)
 
-.. image:: https://img.shields.io/pypi/dm/pyrh?color=blue&style=plastic
-   :target: https://pypi.org/project/pyrh/
-   :alt: PyPI - Downloads
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/pyrh?color=blue&style=plastic)](https://pypi.org/project/pyrh/)
 
-.. image:: https://img.shields.io/github/license/robinhood-unofficial/Robinhood
-   :target: https://github.com/robinhood-unofficial/pyrh/blob/master/LICENSE
-   :alt: License
+[![License](https://img.shields.io/github/license/robinhood-unofficial/Robinhood)](https://github.com/robinhood-unofficial/pyrh/blob/master/LICENSE)
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black
-   :alt: Code Style
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-.. image:: https://img.shields.io/gitter/room/J-Robinhood/Lobby
-   :target: https://gitter.im/J-Robinhood/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-   :alt: Gitter
+[![Gitter](https://img.shields.io/gitter/room/J-Robinhood/Lobby)](https://gitter.im/J-Robinhood/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Python Framework to make trades with Unofficial Robinhood API. Supports Python 3.6+
+Python Framework to make trades with Unofficial Robinhood API. Supports
+Python 3.6+
 
-*Please note that parts of this project maybe non-functional / under rapid development*
-#######################################################################################
+# *Please note that parts of this project maybe non-functional / under rapid development*
 
-* A stable release is imminent
+-   A stable release is imminent
 
-Documentation: https://pyrh.readthedocs.io/en/latest/
+Documentation: <https://pyrh.readthedocs.io/en/latest/>
 
-Quick start
-***********
+## Quick start
 
-.. code-block:: python
+``` python
+from pyrhhfbp import Robinhood
 
-   from pyrhhfbp import Robinhood
+rh = Robinhood()
+rh.login(username="YOUR_EMAIL", password="YOUR_PASSWORD")
+rh.print_quote("AAPL")
+```
 
-   rh = Robinhood()
-   rh.login(username="YOUR_EMAIL", password="YOUR_PASSWORD")
-   rh.print_quote("AAPL")
+## How To Install:
 
-How To Install:
-***************
+    pip install pyrhhfbp
 
-.. code-block::
-
-   pip install pyrhhfbp
-
-How To Release to PyPI:
-***************
-
-.. code-block::
+##  How To Release to PyPI: 
 
     poetry publish --build
 
-
-Running example.ipynb_
-**********************
-
-.. _example.ipynb: https://github.com/robinhood-unofficial/pyrh/blob/master/notebooks/example.ipynb
+## Running [example.ipynb](https://github.com/robinhood-unofficial/pyrh/blob/master/notebooks/example.ipynb)
 
 Clone the repository and install jupyter capabilities.
 
-.. code-block::
+    git clone https://github.com/robinhood-unofficial/pyrh.git
+    cd pyrh
+    python --version # python 3.3+ for venv functionality
+    
+    python -m venv pyrh_env
+    source pyrh_env/bin/activate
+    pip install .[notebook]
+    cp .env.sample .env # update the values in here
+    jupyter notebook notebooks/example.ipynb
 
-   $ git clone https://github.com/robinhood-unofficial/pyrh.git
-   $ cd pyrh
-   $ python --version # python 3.3+ for venv functionality
-   Python 3.7.6
-   $ python -m venv pyrh_env
-   $ source pyrh_env/bin/activate
-   (pyrh_env) $ pip install .[notebook]
-   (pyrh_env) $ cp .env.sample .env # update the values in here
-   (pyrh_env) $ jupyter notebook notebooks/example.ipynb
 
 Now just run the files in the example.
 
-Related
-*******
+## Related
 
-* `robinhood-ruby <https://github.com/rememberlenny/robinhood-ruby>`_ - RubyGem for interacting with Robinhood API
-* `robinhood-node <https://github.com/aurbano/robinhood-node>`_ - NodeJS module to make trades with Robinhood Private API
-* See the original `blog post <https://medium.com/@rohanpai25/reversing-robinhood-free-accessible-automated-stock-trading-f40fba1e7d8b>`_.
+-   [robinhood-ruby](https://github.com/rememberlenny/robinhood-ruby) -
+    RubyGem for interacting with Robinhood API
+-   [robinhood-node](https://github.com/aurbano/robinhood-node) - NodeJS
+    module to make trades with Robinhood Private API
+-   See the original [blog
+    post](https://medium.com/@rohanpai25/reversing-robinhood-free-accessible-automated-stock-trading-f40fba1e7d8b).
