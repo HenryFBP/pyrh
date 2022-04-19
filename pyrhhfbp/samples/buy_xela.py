@@ -2,7 +2,7 @@ import os
 
 from pyrhhfbp import dump_session
 from pyrhhfbp.samples.somesettings import RH_LOGIN_CRED_PATH, RH_SESSION_JSON_PATH
-from someutils import get_robinhood_from_disk_or_prompt, get_robinhood_login_json
+from someutils import get_robinhood_from_disk_or_prompt, get_robinhood_login_json, user_prompt_yn
 
 if __name__ == '__main__':
 
@@ -14,12 +14,17 @@ if __name__ == '__main__':
         dump_session(rh, RH_SESSION_JSON_PATH)
 
     # check if user already has a quote for XELA...
-    raise NotImplementedError("lol u r lazy")
+    # raise NotImplementedError("lol u r lazy")
 
     # ask user if they want to buy XELA
     stock_symbol = 'XELA'
     stock_quote_data = rh.quote_data(stock_symbol)
+
+    # TODO: What is the lower price? idk lol. We need to make a POJO to store this stuff...I am sick of handling raw JSON... We also should validate against a schema...the lack of JSON schema validation is the whole reason I had to modify the `place_buy_order` method.
     stock_price = stock_quote_data['last_extended_hours_trade_price']
+    if not stock_price:
+        stock_price = stock_quote_data['last_trade_price']
+
     stock_quantity = 3
     print("{}: costs ${}".format(stock_symbol, stock_price))
 

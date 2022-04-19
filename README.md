@@ -51,6 +51,10 @@ rh.print_quote("AAPL")
 
     poetry publish --build
 
+## Sample usage
+
+See the [./pyrhhfbp/samples/](./pyrhhfbp/samples/) folder for some examples of how to login to Robin Hood, to place BUY orders, etc.
+
 ## Running [example.ipynb](https://github.com/robinhood-unofficial/pyrh/blob/master/notebooks/example.ipynb)
 
 Clone the repository and install jupyter capabilities.
