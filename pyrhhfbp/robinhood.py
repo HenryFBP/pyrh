@@ -1352,9 +1352,11 @@ class Robinhood(InstrumentManager, SessionManager):
             if (price == 0) or (price is None):
                 price = self.quote_data(instrument["symbol"])["last_trade_price"]
 
+        instrument_url = instrument['instrument']
+
         payload = {
             "account": self.get_account()["url"],
-            "instrument": unquote(instrument["url"]),
+            "instrument": unquote(instrument_url),
             "symbol": instrument["symbol"],
             "type": order.lower(),
             "time_in_force": time_in_force.lower(),
