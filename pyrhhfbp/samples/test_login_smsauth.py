@@ -1,14 +1,5 @@
-import json
-import os
-from typing import Dict
 from pyrhhfbp import Robinhood
-
-
-def get_robinhood_login_json(path='~/.robinhood/login.json') -> Dict:
-    with open(os.path.abspath(os.path.expanduser(path))) as fh:
-        obj = json.load(fh)
-    return obj
-
+from pyrhhfbp.samples.someutils import get_robinhood_login_json
 
 if __name__ == '__main__':
     creds = get_robinhood_login_json()
