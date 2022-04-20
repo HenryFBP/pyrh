@@ -204,7 +204,7 @@ def build_market_data(option_id: Optional[str] = None) -> URL:
     Returns:
         A constructed URL for market data for a particular `option_id`.
     """
-    if option_id is None:
+    if not (option_id is None):
         return MARKET_DATA_BASE / f"/{option_id}/"
     else:
-        return MARKET_DATA_BASE
+        return MARKET_DATA_BASE 

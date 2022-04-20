@@ -1,5 +1,6 @@
 """robinhood.py: a collection of utilities for working with Robinhood's Private API."""
 
+from typing import Any, Dict, List
 from enum import Enum
 from urllib.parse import unquote
 
@@ -57,7 +58,7 @@ class Robinhood(InstrumentManager, SessionManager):
         """Fetch investment_profile."""
         return self.get(urls.INVESTMENT_PROFILE)
 
-    def quote_data(self, stock=""):
+    def quote_data(self, stock="") -> Dict:
         """Fetch stock quote.
 
         Args:
@@ -155,9 +156,10 @@ class Robinhood(InstrumentManager, SessionManager):
         data = self.quote_data(stock)
         return data
 
-    def get_stock_marketdata(self, instruments):
+    def get_stock_marketdata(self, instruments: List[Any]):
+
         info = self.get_url(
-            urls.build_market_data() + "quotes/?instruments=" + ",".join(instruments)
+            str(urls.build_market_data()) + "quotes?instruments=" + (",".join(instruments))
         )
         return info["results"]
 
@@ -453,7 +455,7 @@ class Robinhood(InstrumentManager, SessionManager):
 
         return res["results"][0]
 
-    def get_url(self, url):
+    def get_url(self, url: str):
         """Flat wrapper for fetching URL directly/"""
 
         return self.get(url)
@@ -1435,7 +1437,7 @@ class Robinhood(InstrumentManager, SessionManager):
     # GET OPEN ORDER(S)
     ##############################
 
-    def get_open_orders(self):
+    def get_open_orders(self) -> List[dict]:
         """Returns all currently open (cancellable) orders.
 
         If not orders are currently open, `None` is returned.
