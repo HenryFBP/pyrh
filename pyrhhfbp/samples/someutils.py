@@ -1,9 +1,32 @@
 import json
+from json.encoder import INFINITY
 import os
-from typing import Dict, Any, Union
+from typing import Dict, Any, List, Union
 
 from pyrhhfbp import Robinhood, load_session
 from pyrhhfbp.samples.somesettings import RH_LOGIN_CRED_PATH
+
+
+def choose_lowest(*args: List[Union[int, str, float, None]]):
+    lowest = INFINITY
+
+    for arg in args:
+
+        if arg:
+
+            if type(arg) is str:
+                arg = float(arg)
+
+            if type(arg) is int:
+                arg = float(arg)
+
+            if arg < lowest:
+                lowest = arg
+
+    if lowest == INFINITY:
+        return None
+
+    return lowest
 
 
 def user_prompt_choose_dict(
@@ -61,12 +84,13 @@ def get_robinhood_from_disk_or_prompt(session_json_path, creds) -> Robinhood:
         rh = load_session(session_json_path)
         print("Loaded session from '{}'...\n"
               "Testing if it's valid... AAPL price = {}".format(
-            session_json_path,
-            rh.get_quote_list("AAPL", "symbol,last_trade_price")[0][1]
-        ))
+                  session_json_path,
+                  rh.get_quote_list("AAPL", "symbol,last_trade_price")[0][1]
+              ))
     else:
         print("We do not have a saved session. Using saved creds. you may be prompted for 2fa")
-        rh = Robinhood(username=creds['email'], password=creds['password'], challenge_type='sms')
+        rh = Robinhood(username=creds['email'],
+                       password=creds['password'], challenge_type='sms')
 
     print("rh.oauth.is_valid={}".format(rh.oauth.is_valid))
     if not rh.oauth.is_valid:
