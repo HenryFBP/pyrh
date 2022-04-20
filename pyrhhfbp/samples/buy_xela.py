@@ -28,29 +28,26 @@ if __name__ == '__main__':
 
     # check how many quotes user already has for XELA...
     my_orders = rh.get_open_orders()
-    if(len(my_orders) > 0):
-        for order in my_orders:
-            # print(order)
-            # print(order['url'])
-            stock_data = (rh.get(order['instrument']))
-            position_data = (rh.get(order['position']))
+    for order in my_orders:
 
-            # print("daStockData:")
-            # print(daStockData)
-            if stock_data['symbol'] == stock_symbol:
-
-                stock_quantity_in_pending_orders += position_data['quantity']
-                print("position data:")
-                print(position_data)
+        stock_data = (rh.get(order['instrument']))
+        position_data = (rh.get(order['position']))
+        # print("daStockData:")
+        # print(daStockData)
+        # if it matches our symbol,
+        if stock_data['symbol'] == stock_symbol:
+            # record how many stocks are in a pending order
+            stock_quantity_in_pending_orders += float(position_data['quantity'])
+            # print("position data:")
+            # print(position_data)
 
     # check if user already owns XELA
-
-    stock_quantity_owned = 0
+    stock_quantity_owned = 0.0
     my_owned_stocks = rh.get_account()
 
+    # if we would buy too much...
     stocks_in_orders_or_owned = stock_quantity_in_pending_orders + stock_quantity_owned
 
-    # if we would buy too much...
     if(stocks_in_orders_or_owned >= stock_quantity_desired):
         msg = "You already own {} stocks and already have orders for {} stocks.\n".format(
             stock_quantity_in_pending_orders,
