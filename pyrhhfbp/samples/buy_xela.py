@@ -41,17 +41,18 @@ if __name__ == '__main__':
             # print("position data:")
             # print(position_data)
 
-    # check if user already owns XELA
+    # TODO check if user already owns XELA
     stock_quantity_owned = 0.0
-    my_owned_stocks = rh.get_account()
+    # my_owned_stocks = rh.order_history()
+    # print(my_owned_stocks)
 
     # if we would buy too much...
     stocks_in_orders_or_owned = stock_quantity_in_pending_orders + stock_quantity_owned
 
     if(stocks_in_orders_or_owned >= stock_quantity_desired):
         msg = "You already own {} stocks and already have orders for {} stocks.\n".format(
+            stock_quantity_owned,
             stock_quantity_in_pending_orders,
-            stock_quantity_owned
         )
         msg += ("Because of this, we are not going to BUY {d} {s} because it would exceed our target of {d} {s}.\n".format(
             d=stock_quantity_desired,
