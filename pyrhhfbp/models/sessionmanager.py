@@ -1,5 +1,6 @@
 """Manage Robinhood Sessions."""
 
+import logging
 import uuid
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any, Dict, Optional, Union, cast
@@ -210,6 +211,7 @@ class SessionManager(BaseModel):
 
         """
         # Guard against common gotcha, passing schema class instead of instance.
+        logging.debug("GET " + str(url))
         if isinstance(schema, type):
             raise PyrhValueError("Passed Schema should be an instance not a class.")
         params = {} if params is None else params
